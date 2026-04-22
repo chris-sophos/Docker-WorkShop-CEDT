@@ -38,7 +38,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Tag and push
-      run: |
+        run: |
           FULL=${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME
           docker image tag $IMAGE_NAME:${{ github.sha }} $FULL:${{ github.sha }}
           docker image tag $IMAGE_NAME:${{ github.sha }} $FULL:latest
