@@ -11,7 +11,7 @@ WORKDIR /app
 COPY app/package.json app/package-lock.json ./
 RUN npm ci --omit=dev
 
-COPY . .
+COPY app/ ./
 
 # =============================================================================
 # Runtime stage — slim final image. Nothing from builder's caches leaks in.
@@ -21,7 +21,7 @@ FROM builder
 
 WORKDIR /app
 
-COPY --from=builder . .
+COPY --from=builder app/ ./
 
 ENV NODE_ENV=production
 EXPOSE 3000
